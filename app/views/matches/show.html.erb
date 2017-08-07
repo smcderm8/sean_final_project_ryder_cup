@@ -1,0 +1,34 @@
+<div class="page-header">
+  <h3>Match #<%= @match.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Name</dt>
+      <dd><%= @match.name %></dd>
+
+      <dt>Course</dt>
+      <dd><%= @match.course_id %></dd>
+
+      <dt>Date</dt>
+      <dd><%= @match.date %></dd>
+
+      <dt>Time</dt>
+      <dd><%= @match.time %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/matches" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/matches/<%= @match.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_match/<%= @match.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
