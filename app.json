@@ -1,0 +1,1 @@
+{"name":"Sean Final Project Ryder Cup","repository":"https://github.com/smcderm8/sean_final_project_ryder_cup","env":{"CLOUDINARY_CLOUD_NAME":{"required":true},"CLOUDINARY_API_KEY":{"required":true},"CLOUDINARY_API_SECRET":{"required":true},"ROLLBAR_ACCESS_TOKEN":{"required":true}}}
