@@ -9,13 +9,31 @@
       <dd><%= @tee_time.time %></dd>
 
       <dt>Player</dt>
-      <dd><%= @tee_time.player_id %></dd>
+      <dd>
+        <% if @tee_time.player.present? %>
+          <a href="/players/<%= @tee_time.player_id %>">
+            <%= @tee_time.player.team_id %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Match</dt>
-      <dd><%= @tee_time.match_id %></dd>
+      <dd>
+        <% if @tee_time.match.present? %>
+          <a href="/matches/<%= @tee_time.match_id %>">
+            <%= @tee_time.match.name %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Team</dt>
-      <dd><%= @tee_time.team_id %></dd>
+      <dd>
+        <% if @tee_time.team.present? %>
+          <a href="/teams/<%= @tee_time.team_id %>">
+            <%= @tee_time.team.name %>
+          </a>
+        <% end %>
+      </dd>
 
     </dl>
 

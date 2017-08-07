@@ -19,7 +19,13 @@
       <% @matches.each do |match| %>
       <tr>
         <td><%= match.name %></td>
-        <td><%= match.course.image_url %></td>
+        <td>
+          <% if match.course.present? %>
+            <a href="/courses/<%= match.course.id %>">
+              <%= match.course.image_url %>
+            </a>
+          <% end %>
+        </td>
         <td><%= match.date %></td>
         <td><%= match.time %></td>
         <td>

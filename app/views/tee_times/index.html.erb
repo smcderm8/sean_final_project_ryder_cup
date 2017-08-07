@@ -19,9 +19,27 @@
       <% @tee_times.each do |tee_time| %>
       <tr>
         <td><%= tee_time.time %></td>
-        <td><%= tee_time.player.team_id %></td>
-        <td><%= tee_time.match.name %></td>
-        <td><%= tee_time.team.name %></td>
+        <td>
+          <% if tee_time.player.present? %>
+            <a href="/players/<%= tee_time.player.id %>">
+              <%= tee_time.player.team_id %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if tee_time.match.present? %>
+            <a href="/matches/<%= tee_time.match.id %>">
+              <%= tee_time.match.name %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if tee_time.team.present? %>
+            <a href="/teams/<%= tee_time.team.id %>">
+              <%= tee_time.team.name %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/tee_times/<%= tee_time.id %>" class="btn btn-primary">Show</a>
           <a href="/tee_times/<%= tee_time.id %>/edit" class="btn btn-warning">Edit</a>
