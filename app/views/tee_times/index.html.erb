@@ -19,7 +19,7 @@
       <% @tee_times.each do |tee_time| %>
       <tr>
         <td><%= tee_time.time %></td>
-        <td><%= tee_time.player_id %></td>
+        <td><%= tee_time.player.team_id %></td>
         <td><%= tee_time.match_id %></td>
         <td><%= tee_time.team_id %></td>
         <td>
