@@ -1,0 +1,40 @@
+<div class="page-header">
+  <h3>Player #<%= @player.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Team</dt>
+      <dd><%= @player.team_id %></dd>
+
+      <dt>Name</dt>
+      <dd><%= @player.name %></dd>
+
+      <dt>Handicap index</dt>
+      <dd><%= @player.handicap_index %></dd>
+
+      <dt>Email</dt>
+      <dd><%= @player.email %></dd>
+
+      <dt>Phone number</dt>
+      <dd><%= @player.phone_number %></dd>
+
+      <dt>Photo url</dt>
+      <dd><%= @player.photo_url %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/players" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/players/<%= @player.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_player/<%= @player.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
