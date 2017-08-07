@@ -1,6 +1,7 @@
 class TeeTimesController < ApplicationController
   def index
-    @tee_times = TeeTime.page(params[:page]).per(10)
+    @q = TeeTime.ransack(params[:q])
+    @tee_times = @q.result(:distinct => true).includes(:team, :player, :match).page(params[:page]).per(10)
 
     render("tee_times/index.html.erb")
   end
