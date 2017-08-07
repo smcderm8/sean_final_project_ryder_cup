@@ -1,6 +1,9 @@
 class TeeTime < ApplicationRecord
   # Direct associations
 
+  belongs_to :match,
+             :counter_cache => true
+
   belongs_to :player,
              :counter_cache => true
 
