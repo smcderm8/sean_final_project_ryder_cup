@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
   root :to => "teams#index"
   # Routes for the Tee_time resource:
   # CREATE
