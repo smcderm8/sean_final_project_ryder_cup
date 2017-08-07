@@ -1,6 +1,6 @@
 class TeeTimesController < ApplicationController
   def index
-    @tee_times = TeeTime.all
+    @tee_times = TeeTime.page(params[:page]).per(10)
 
     render("tee_times/index.html.erb")
   end
