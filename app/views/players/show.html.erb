@@ -38,3 +38,65 @@
     </div>
   </div>
 </div>
+
+<!-- A Player has many tee_times -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Tee Times
+      </li>
+
+      <% @player.tee_times.each do |tee_time| %>
+        <li class="list-group-item">
+          <a href="/tee_times/<%= tee_time.id %>">
+            <%= tee_time.time %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/tee_times/<%= tee_time.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/tee_times/<%= tee_time.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_tee_time/<%= tee_time.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A Player has many matches -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Matches
+      </li>
+
+      <% @player.matches.each do |match| %>
+        <li class="list-group-item">
+          <a href="/matches/<%= match.id %>">
+            <%= match.name %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/matches/<%= match.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/matches/<%= match.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_match/<%= match.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

@@ -26,3 +26,96 @@
     </div>
   </div>
 </div>
+
+<!-- A Team has many players -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Players
+      </li>
+
+      <% @team.players.each do |player| %>
+        <li class="list-group-item">
+          <a href="/players/<%= player.id %>">
+            <%= player.team_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/players/<%= player.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/players/<%= player.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_player/<%= player.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A Team has many tee_times -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Tee Times
+      </li>
+
+      <% @team.tee_times.each do |tee_time| %>
+        <li class="list-group-item">
+          <a href="/tee_times/<%= tee_time.id %>">
+            <%= tee_time.time %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/tee_times/<%= tee_time.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/tee_times/<%= tee_time.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_tee_time/<%= tee_time.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A Team has many matches -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Matches
+      </li>
+
+      <% @team.matches.each do |match| %>
+        <li class="list-group-item">
+          <a href="/matches/<%= match.id %>">
+            <%= match.name %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/matches/<%= match.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/matches/<%= match.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_match/<%= match.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
