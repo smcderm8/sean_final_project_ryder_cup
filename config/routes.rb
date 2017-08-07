@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root :to => "teams#index"
   # Routes for the Tee_time resource:
   # CREATE
   get "/tee_times/new", :controller => "tee_times", :action => "new"
