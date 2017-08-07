@@ -6,6 +6,7 @@ class PlayersController < ApplicationController
   end
 
   def show
+    @tee_time = TeeTime.new
     @player = Player.find(params[:id])
 
     render("players/show.html.erb")
