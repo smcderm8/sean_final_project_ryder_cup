@@ -1,0 +1,64 @@
+<!-- Validation failure messages -->
+<% if @tee_time.errors.any? %>
+  <% @tee_time.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Tee Time #<%= @tee_time.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_tee_time/<%= @tee_time.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for time -->
+      <div class="form-group">
+        <label for="time" class="control-label">
+          Time
+        </label>
+
+        <input type="text" id="time" name="time" placeholder="Time" class="form-control" value="<%= @tee_time.time %>">
+      </div>
+
+      <!-- Label and input for player_id -->
+      <div class="form-group">
+        <label for="player_id" class="control-label">
+          Player
+        </label>
+
+        <input type="text" id="player_id" name="player_id" placeholder="Player" class="form-control" value="<%= @tee_time.player_id %>">
+      </div>
+
+      <!-- Label and input for match_id -->
+      <div class="form-group">
+        <label for="match_id" class="control-label">
+          Match
+        </label>
+
+        <input type="text" id="match_id" name="match_id" placeholder="Match" class="form-control" value="<%= @tee_time.match_id %>">
+      </div>
+
+      <!-- Label and input for team_id -->
+      <div class="form-group">
+        <label for="team_id" class="control-label">
+          Team
+        </label>
+
+        <input type="text" id="team_id" name="team_id" placeholder="Team" class="form-control" value="<%= @tee_time.team_id %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Tee Time
+      </button>
+      or
+      <a href="/tee_times/<%= @tee_time.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

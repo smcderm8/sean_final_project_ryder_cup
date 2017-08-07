@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Tee_time resource:
+  # CREATE
+  get "/tee_times/new", :controller => "tee_times", :action => "new"
+  post "/create_tee_time", :controller => "tee_times", :action => "create"
+
+  # READ
+  get "/tee_times", :controller => "tee_times", :action => "index"
+  get "/tee_times/:id", :controller => "tee_times", :action => "show"
+
+  # UPDATE
+  get "/tee_times/:id/edit", :controller => "tee_times", :action => "edit"
+  post "/update_tee_time/:id", :controller => "tee_times", :action => "update"
+
+  # DELETE
+  get "/delete_tee_time/:id", :controller => "tee_times", :action => "destroy"
+  #------------------------------
+
   # Routes for the Match resource:
   # CREATE
   get "/matches/new", :controller => "matches", :action => "new"

@@ -1,0 +1,34 @@
+<div class="page-header">
+  <h1>
+    Tee times
+    <a href="/tee_times/new" class="btn btn-lg btn-success">New Tee time</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Time</th>
+        <th>Player</th>
+        <th>Match</th>
+        <th>Team</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @tee_times.each do |tee_time| %>
+      <tr>
+        <td><%= tee_time.time %></td>
+        <td><%= tee_time.player_id %></td>
+        <td><%= tee_time.match_id %></td>
+        <td><%= tee_time.team_id %></td>
+        <td>
+          <a href="/tee_times/<%= tee_time.id %>" class="btn btn-primary">Show</a>
+          <a href="/tee_times/<%= tee_time.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_tee_time/<%= tee_time.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

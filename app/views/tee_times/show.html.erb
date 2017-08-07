@@ -1,0 +1,34 @@
+<div class="page-header">
+  <h3>Tee Time #<%= @tee_time.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Time</dt>
+      <dd><%= @tee_time.time %></dd>
+
+      <dt>Player</dt>
+      <dd><%= @tee_time.player_id %></dd>
+
+      <dt>Match</dt>
+      <dd><%= @tee_time.match_id %></dd>
+
+      <dt>Team</dt>
+      <dd><%= @tee_time.team_id %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/tee_times" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/tee_times/<%= @tee_time.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_tee_time/<%= @tee_time.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
