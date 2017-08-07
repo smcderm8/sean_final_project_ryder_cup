@@ -9,6 +9,10 @@ class Player < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :matches,
+             :through => :tee_times,
+             :source => :match
+
   # Validations
 
 end

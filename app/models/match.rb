@@ -9,6 +9,10 @@ class Match < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :players,
+             :through => :tee_times,
+             :source => :player
+
   has_many   :teams,
              :through => :tee_times,
              :source => :team
