@@ -1,0 +1,73 @@
+<!-- Validation failure messages -->
+<% if @hole.errors.any? %>
+  <% @hole.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Hole #<%= @hole.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_hole/<%= @hole.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for course_id -->
+      <div class="form-group">
+        <label for="course_id" class="control-label">
+          Course
+        </label>
+
+        <%= select_tag(:course_id, options_from_collection_for_select(Course.all, :id, :image_url, @hole.course_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for hole_number -->
+      <div class="form-group">
+        <label for="hole_number" class="control-label">
+          Hole number
+        </label>
+
+        <input type="text" id="hole_number" name="hole_number" placeholder="Hole number" class="form-control" value="<%= @hole.hole_number %>">
+      </div>
+
+      <!-- Label and input for par -->
+      <div class="form-group">
+        <label for="par" class="control-label">
+          Par
+        </label>
+
+        <input type="text" id="par" name="par" placeholder="Par" class="form-control" value="<%= @hole.par %>">
+      </div>
+
+      <!-- Label and input for yardage -->
+      <div class="form-group">
+        <label for="yardage" class="control-label">
+          Yardage
+        </label>
+
+        <input type="text" id="yardage" name="yardage" placeholder="Yardage" class="form-control" value="<%= @hole.yardage %>">
+      </div>
+
+      <!-- Label and input for handicap -->
+      <div class="form-group">
+        <label for="handicap" class="control-label">
+          Handicap
+        </label>
+
+        <input type="text" id="handicap" name="handicap" placeholder="Handicap" class="form-control" value="<%= @hole.handicap %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Hole
+      </button>
+      or
+      <a href="/holes/<%= @hole.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

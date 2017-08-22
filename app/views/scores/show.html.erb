@@ -1,0 +1,52 @@
+<div class="page-header">
+  <h3>Score #<%= @score.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Score</dt>
+      <dd><%= @score.score %></dd>
+
+      <dt>Match</dt>
+      <dd>
+        <% if @score.match.present? %>
+          <a href="/matches/<%= @score.match_id %>">
+            <%= @score.match.name %>
+          </a>
+        <% end %>
+      </dd>
+
+      <dt>Player</dt>
+      <dd>
+        <% if @score.player.present? %>
+          <a href="/users/<%= @score.player_id %>">
+            <%= @score.player.team_id %>
+          </a>
+        <% end %>
+      </dd>
+
+      <dt>Hole</dt>
+      <dd>
+        <% if @score.hole.present? %>
+          <a href="/holes/<%= @score.hole_id %>">
+            <%= @score.hole.course_id %>
+          </a>
+        <% end %>
+      </dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/scores" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/scores/<%= @score.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_score/<%= @score.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

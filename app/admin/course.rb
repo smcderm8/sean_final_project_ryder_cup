@@ -1,6 +1,6 @@
 ActiveAdmin.register Course do
 
- permit_params :image_url, :name, :address, :par, :rating, :slope
+ permit_params :image_url, :name, :address, :par, :rating, :slope, :yardage
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

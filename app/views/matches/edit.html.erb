@@ -36,22 +36,76 @@
         <%= select_tag(:course_id, options_from_collection_for_select(Course.all, :id, :image_url, @match.course_id), :class => "form-control") %>
       </div>
 
-      <!-- Label and input for date -->
+      <!-- Label and input for tee_time -->
       <div class="form-group">
-        <label for="date" class="control-label">
-          Date
+        <label for="tee_time" class="control-label">
+          Tee time
         </label>
 
-        <input type="text" id="date" name="date" placeholder="Date" class="form-control" value="<%= @match.date %>">
+        <input type="text" id="tee_time" name="tee_time" placeholder="Tee time" class="form-control" value="<%= @match.tee_time %>">
       </div>
 
-      <!-- Label and input for time -->
+      <!-- Label and input for winning_team_id -->
       <div class="form-group">
-        <label for="time" class="control-label">
-          Time
+        <label for="winning_team_id" class="control-label">
+          Winning team
         </label>
 
-        <input type="text" id="time" name="time" placeholder="Time" class="form-control" value="<%= @match.time %>">
+        <%= select_tag(:winning_team_id, options_from_collection_for_select(Team.all, :id, :name, @match.winning_team_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for home_team_id -->
+      <div class="form-group">
+        <label for="home_team_id" class="control-label">
+          Home team
+        </label>
+
+        <%= select_tag(:home_team_id, options_from_collection_for_select(Team.all, :id, :name, @match.home_team_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for away_team_id -->
+      <div class="form-group">
+        <label for="away_team_id" class="control-label">
+          Away team
+        </label>
+
+        <%= select_tag(:away_team_id, options_from_collection_for_select(Team.all, :id, :name, @match.away_team_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for booth_player_1_id -->
+      <div class="form-group">
+        <label for="booth_player_1_id" class="control-label">
+          Booth player 1
+        </label>
+
+        <%= select_tag(:booth_player_1_id, options_from_collection_for_select(User.all, :id, :team_id, @match.booth_player_1_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for booth_player_2_id -->
+      <div class="form-group">
+        <label for="booth_player_2_id" class="control-label">
+          Booth player 2
+        </label>
+
+        <%= select_tag(:booth_player_2_id, options_from_collection_for_select(User.all, :id, :team_id, @match.booth_player_2_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for kellogg_player_1_id -->
+      <div class="form-group">
+        <label for="kellogg_player_1_id" class="control-label">
+          Kellogg player 1
+        </label>
+
+        <%= select_tag(:kellogg_player_1_id, options_from_collection_for_select(User.all, :id, :team_id, @match.kellogg_player_1_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for kellogg_player_2_id -->
+      <div class="form-group">
+        <label for="kellogg_player_2_id" class="control-label">
+          Kellogg player 2
+        </label>
+
+        <%= select_tag(:kellogg_player_2_id, options_from_collection_for_select(User.all, :id, :team_id, @match.kellogg_player_2_id), :class => "form-control") %>
       </div>
 
       <button class="btn btn-warning">

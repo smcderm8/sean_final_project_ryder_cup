@@ -1,12 +1,18 @@
 class CoursesController < ApplicationController
   def index
     @q = Course.ransack(params[:q])
-    @courses = @q.result(:distinct => true).includes(:matches).page(params[:page]).per(10)
+    @courses = @q.result(:distinct => true).includes(:matches, :holes).page(params[:page]).per(10)
+    @location_hash = Gmaps4rails.build_markers(@courses.where.not(:address_latitude => nil)) do |course, marker|
+      marker.lat course.address_latitude
+      marker.lng course.address_longitude
+      marker.infowindow "<h5><a href='/courses/#{course.id}'>#{course.image_url}</a></h5><small>#{course.address_formatted_address}</small>"
+    end
 
     render("courses/index.html.erb")
   end
 
   def show
+    @hole = Hole.new
     @match = Match.new
     @course = Course.find(params[:id])
 
@@ -28,6 +34,7 @@ class CoursesController < ApplicationController
     @course.par = params[:par]
     @course.rating = params[:rating]
     @course.slope = params[:slope]
+    @course.yardage = params[:yardage]
 
     save_status = @course.save
 
@@ -60,6 +67,7 @@ class CoursesController < ApplicationController
     @course.par = params[:par]
     @course.rating = params[:rating]
     @course.slope = params[:slope]
+    @course.yardage = params[:yardage]
 
     save_status = @course.save
 

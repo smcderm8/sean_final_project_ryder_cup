@@ -1,13 +1,13 @@
 class MatchesController < ApplicationController
   def index
     @q = Match.ransack(params[:q])
-    @matches = @q.result(:distinct => true).includes(:course, :tee_times, :teams, :players).page(params[:page]).per(10)
+    @matches = @q.result(:distinct => true).includes(:winning_team, :home_team, :away_team, :booth_player_1, :booth_player_2, :kellogg_player_1, :kellogg_player_2, :course, :scores).page(params[:page]).per(10)
 
     render("matches/index.html.erb")
   end
 
   def show
-    @tee_time = TeeTime.new
+    @score = Score.new
     @match = Match.find(params[:id])
 
     render("matches/show.html.erb")
@@ -24,8 +24,14 @@ class MatchesController < ApplicationController
 
     @match.name = params[:name]
     @match.course_id = params[:course_id]
-    @match.date = params[:date]
-    @match.time = params[:time]
+    @match.tee_time = params[:tee_time]
+    @match.winning_team_id = params[:winning_team_id]
+    @match.home_team_id = params[:home_team_id]
+    @match.away_team_id = params[:away_team_id]
+    @match.booth_player_1_id = params[:booth_player_1_id]
+    @match.booth_player_2_id = params[:booth_player_2_id]
+    @match.kellogg_player_1_id = params[:kellogg_player_1_id]
+    @match.kellogg_player_2_id = params[:kellogg_player_2_id]
 
     save_status = @match.save
 
@@ -54,8 +60,14 @@ class MatchesController < ApplicationController
 
     @match.name = params[:name]
     @match.course_id = params[:course_id]
-    @match.date = params[:date]
-    @match.time = params[:time]
+    @match.tee_time = params[:tee_time]
+    @match.winning_team_id = params[:winning_team_id]
+    @match.home_team_id = params[:home_team_id]
+    @match.away_team_id = params[:away_team_id]
+    @match.booth_player_1_id = params[:booth_player_1_id]
+    @match.booth_player_2_id = params[:booth_player_2_id]
+    @match.kellogg_player_1_id = params[:kellogg_player_1_id]
+    @match.kellogg_player_2_id = params[:kellogg_player_2_id]
 
     save_status = @match.save
 

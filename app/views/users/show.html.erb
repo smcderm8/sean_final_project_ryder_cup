@@ -1,0 +1,198 @@
+<div class="page-header">
+  <h3>User #<%= @user.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Team</dt>
+      <dd>
+        <% if @user.team.present? %>
+          <a href="/teams/<%= @user.team_id %>">
+            <%= @user.team.name %>
+          </a>
+        <% end %>
+      </dd>
+
+      <dt>Name</dt>
+      <dd><%= @user.name %></dd>
+
+      <dt>Handicap index</dt>
+      <dd><%= @user.handicap_index %></dd>
+
+      <dt>Phone number</dt>
+      <dd><%= @user.phone_number %></dd>
+
+      <dt>Photo url</dt>
+      <dd><%= @user.photo_url %></dd>
+
+      <dt>Email</dt>
+      <dd><%= @user.email %></dd>
+
+      <dt>Password</dt>
+      <dd><%= @user.password %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/users" class="btn btn-primary">
+        Back
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- A User has many scores -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Scores
+      </li>
+
+      <% @user.scores.each do |score| %>
+        <li class="list-group-item">
+          <a href="/scores/<%= score.id %>">
+            <%= score.score %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/scores/<%= score.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/scores/<%= score.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_score/<%= score.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A User has many booth_player_1_matches -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Booth Player 1 Matches
+      </li>
+
+      <% @user.booth_player_1_matches.each do |match| %>
+        <li class="list-group-item">
+          <a href="/matches/<%= match.id %>">
+            <%= match.name %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/matches/<%= match.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/matches/<%= match.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_match/<%= match.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A User has many booth_player_2_matches -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Booth Player 2 Matches
+      </li>
+
+      <% @user.booth_player_2_matches.each do |match| %>
+        <li class="list-group-item">
+          <a href="/matches/<%= match.id %>">
+            <%= match.name %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/matches/<%= match.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/matches/<%= match.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_match/<%= match.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A User has many kellogg_player_1_matches -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Kellogg Player 1 Matches
+      </li>
+
+      <% @user.kellogg_player_1_matches.each do |match| %>
+        <li class="list-group-item">
+          <a href="/matches/<%= match.id %>">
+            <%= match.name %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/matches/<%= match.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/matches/<%= match.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_match/<%= match.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A User has many kellogg_player_2_matches -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Kellogg Player 2 Matches
+      </li>
+
+      <% @user.kellogg_player_2_matches.each do |match| %>
+        <li class="list-group-item">
+          <a href="/matches/<%= match.id %>">
+            <%= match.name %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/matches/<%= match.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/matches/<%= match.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_match/<%= match.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

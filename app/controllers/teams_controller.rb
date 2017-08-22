@@ -1,14 +1,14 @@
 class TeamsController < ApplicationController
   def index
     @q = Team.ransack(params[:q])
-    @teams = @q.result(:distinct => true).includes(:players, :tee_times, :matches).page(params[:page]).per(10)
+    @teams = @q.result(:distinct => true).includes(:players, :winning_matches, :home_team_matches, :away_team_matches).page(params[:page]).per(10)
 
     render("teams/index.html.erb")
   end
 
   def show
-    @tee_time = TeeTime.new
-    @player = Player.new
+    @match = Match.new
+    @user = User.new
     @team = Team.find(params[:id])
 
     render("teams/show.html.erb")

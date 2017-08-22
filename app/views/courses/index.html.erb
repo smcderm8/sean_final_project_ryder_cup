@@ -14,24 +14,52 @@
   </div>
 
 <div class="form-group">
-    <%= f.label :slope_cont, "Slope contains" %>
-    <%= f.text_field :slope_cont, :class => "form-control", :placeholder => "Slope contains" %>
+  <%= f.label :yardage, "Yardage" %>
+  <div class="row">
+    <div class='col-md-6 mb-1'>
+      <%= f.text_field :yardage_gteq, :class => "form-control", :placeholder => "Yardage greater than or equal to" %>
+    </div>
+    <div class='col-md-6'>
+      <%= f.text_field :yardage_lteq, :class => "form-control", :placeholder => "Yardage less than or equal to" %>
+    </div>
   </div>
+</div>
 
 <div class="form-group">
-    <%= f.label :rating_cont, "Rating contains" %>
-    <%= f.text_field :rating_cont, :class => "form-control", :placeholder => "Rating contains" %>
+  <%= f.label :slope, "Slope" %>
+  <div class="row">
+    <div class='col-md-6 mb-1'>
+      <%= f.text_field :slope_gteq, :class => "form-control", :placeholder => "Slope greater than or equal to" %>
+    </div>
+    <div class='col-md-6'>
+      <%= f.text_field :slope_lteq, :class => "form-control", :placeholder => "Slope less than or equal to" %>
+    </div>
   </div>
+</div>
 
 <div class="form-group">
-    <%= f.label :par_cont, "Par contains" %>
-    <%= f.text_field :par_cont, :class => "form-control", :placeholder => "Par contains" %>
+  <%= f.label :rating, "Rating" %>
+  <div class="row">
+    <div class='col-md-6 mb-1'>
+      <%= f.text_field :rating_gteq, :class => "form-control", :placeholder => "Rating greater than or equal to" %>
+    </div>
+    <div class='col-md-6'>
+      <%= f.text_field :rating_lteq, :class => "form-control", :placeholder => "Rating less than or equal to" %>
+    </div>
   </div>
+</div>
 
 <div class="form-group">
-    <%= f.label :address_cont, "Address contains" %>
-    <%= f.text_field :address_cont, :class => "form-control", :placeholder => "Address contains" %>
+  <%= f.label :par, "Par" %>
+  <div class="row">
+    <div class='col-md-6 mb-1'>
+      <%= f.text_field :par_gteq, :class => "form-control", :placeholder => "Par greater than or equal to" %>
+    </div>
+    <div class='col-md-6'>
+      <%= f.text_field :par_lteq, :class => "form-control", :placeholder => "Par less than or equal to" %>
+    </div>
   </div>
+</div>
 
 <div class="form-group">
     <%= f.label :name_cont, "Name contains" %>
@@ -93,6 +121,15 @@
   </div>
 </div>
 
+
+<div class="row m-b-2">
+  <div class="col-md-12">
+    <div>
+      <div id="location_map" style="height: 480px;"></div>
+    </div>
+  </div>
+</div>
+
 <div class="row">
   <div class="col-md-12">
     <table class="table table-striped table-hover">
@@ -103,6 +140,7 @@
         <th>Par</th>
         <th>Rating</th>
         <th>Slope</th>
+        <th>Yardage</th>
         <th>Actions</th>
       </tr>
 
@@ -114,6 +152,7 @@
         <td><%= course.par %></td>
         <td><%= course.rating %></td>
         <td><%= course.slope %></td>
+        <td><%= course.yardage %></td>
         <td>
           <a href="/courses/<%= course.id %>" class="btn btn-primary">Show</a>
           <a href="/courses/<%= course.id %>/edit" class="btn btn-warning">Edit</a>
@@ -125,3 +164,14 @@
     <%= paginate @courses, theme: 'twitter-bootstrap-4' %>
   </div>
 </div>
+
+<script src="//maps.google.com/maps/api/js?v=3.24&key=AIzaSyCOTPWiuvyyo6sKoIBzKA4-1ol-vTOIOlM"></script>
+<script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+<script>
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'location_map'}}, function(){
+    markers = handler.addMarkers(<%= raw @location_hash.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+  });
+</script>

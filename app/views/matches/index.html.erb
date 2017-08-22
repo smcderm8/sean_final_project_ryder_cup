@@ -14,47 +14,11 @@
   </div>
 
 <div class="form-group">
-        <%= f.label :time, "Time" %>
-        <div class="row">
-          <div class='col-md-6 mb-1'>
-            <div class='input-group date' id='timegteqPicker'>
-              <%= f.text_field :time_gteq, :class => "form-control", :placeholder => "Time greater than or equal to" %>
-              <span class="input-group-addon">
-                  <span class="glyphicon glyphicon-time"></span>
-              </span>
-              <script type="text/javascript">
-                $(function () {
-                    $('#timegteqPicker').datetimepicker({
-                      format: 'LT'
-                    });
-                });
-              </script>
-            </div>
-          </div>
-          <div class='col-md-6'>
-            <div class='input-group date' id='timelteqPicker'>
-              <%= f.text_field :time_lteq, :class => "form-control", :placeholder => "Time less than or equal to" %>
-              <span class="input-group-addon">
-                  <span class="glyphicon glyphicon-time"></span>
-              </span>
-              <script type="text/javascript">
-                $(function () {
-                    $('#timelteqPicker').datetimepicker({
-                      format: 'LT'
-                    });
-                });
-              </script>
-            </div>
-          </div>
-        </div>
-      </div>
-
-<div class="form-group">
-          <%= f.label :date, "Date" %>
+          <%= f.label :tee_time, "Tee time" %>
           <div class="row">
             <div class='col-md-6 mb-1'>
-              <div class='input-group date' id='dategteqPicker'>
-                  <%= f.text_field :date_gteq, :class => "form-control", :placeholder => "Date greater than or equal to" %>
+              <div class='input-group date' id='tee_timegteqPicker'>
+                  <%= f.text_field :tee_time_gteq, :class => "form-control", :placeholder => "Tee time greater than or equal to" %>
                   <span class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar"></span>
                   </span>
@@ -62,8 +26,8 @@
             </div>
 
             <div class='col-md-6'>
-              <div class='input-group date' id='datelteqPicker'>
-                  <%= f.text_field :date_lteq, :class => "form-control", :placeholder => "Date less than or equal to" %>
+              <div class='input-group date' id='tee_timelteqPicker'>
+                  <%= f.text_field :tee_time_lteq, :class => "form-control", :placeholder => "Tee time less than or equal to" %>
                   <span class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar"></span>
                   </span>
@@ -73,18 +37,18 @@
       </div>
       <script type="text/javascript">
           $(function () {
-              $('#dategteqPicker').datetimepicker({
-                  format: 'MM/DD/YYYY'
+              $('#tee_timegteqPicker').datetimepicker({
+                  format: 'YYYY-MM-DD hh:mm:SS'
               });
-              $('#datelteqPicker').datetimepicker({
+              $('#tee_timelteqPicker').datetimepicker({
                   useCurrent: false,
-                  format: 'MM/DD/YYYY'
+                  format: 'YYYY-MM-DD hh:mm:SS'
               });
-              $('#dategteqPicker').on("dp.change", function (e) {
-                  $('#datelteqPicker').data("DateTimePicker").minDate(e.date);
+              $('#tee_timegteqPicker').on("dp.change", function (e) {
+                  $('#tee_timelteqPicker').data("DateTimePicker").minDate(e.date);
               });
-              $('#datelteqPicker').on("dp.change", function (e) {
-                  $('#dategteqPicker').data("DateTimePicker").maxDate(e.date);
+              $('#tee_timelteqPicker').on("dp.change", function (e) {
+                  $('#tee_timegteqPicker').data("DateTimePicker").maxDate(e.date);
               });
           });
       </script>
@@ -130,19 +94,36 @@
       </script>
 
         <div class="form-group">
+      <%= f.label :winning_team_name_cont, "Team name contains" %>
+      <%= f.text_field :winning_team_name_cont, :class => "form-control", :placeholder => "Team name contains" %>
+    </div>
+
+<div class="form-group">
+      <%= f.label :home_team_name_cont, "Team name contains" %>
+      <%= f.text_field :home_team_name_cont, :class => "form-control", :placeholder => "Team name contains" %>
+    </div>
+
+<div class="form-group">
+      <%= f.label :away_team_name_cont, "Team name contains" %>
+      <%= f.text_field :away_team_name_cont, :class => "form-control", :placeholder => "Team name contains" %>
+    </div>
+
+<div class="form-group">
       <%= f.label :course_image_url_cont, "Course image_url contains" %>
       <%= f.text_field :course_image_url_cont, :class => "form-control", :placeholder => "Course image_url contains" %>
     </div>
 
 <div class="form-group">
-      <%= f.label :tee_times_time_cont, "TeeTime time contains" %>
-      <%= f.text_field :tee_times_time_cont, :class => "form-control", :placeholder => "TeeTime time contains" %>
+  <%= f.label :score, "Score Score" %>
+  <div class="row">
+    <div class='col-md-6 mb-1'>
+      <%= f.text_field :scores_score_gteq, :class => "form-control", :placeholder => "Score Score greater than or equal to" %>
     </div>
-
-<div class="form-group">
-      <%= f.label :teams_name_cont, "Team name contains" %>
-      <%= f.text_field :teams_name_cont, :class => "form-control", :placeholder => "Team name contains" %>
+    <div class='col-md-6'>
+      <%= f.text_field :scores_score_lteq, :class => "form-control", :placeholder => "Score Score less than or equal to" %>
     </div>
+  </div>
+</div>
 
       <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
 
@@ -160,8 +141,14 @@
       <tr>
         <th>Name</th>
         <th>Course</th>
-        <th>Date</th>
-        <th>Time</th>
+        <th>Tee time</th>
+        <th>Winning team</th>
+        <th>Home team</th>
+        <th>Away team</th>
+        <th>Booth player 1</th>
+        <th>Booth player 2</th>
+        <th>Kellogg player 1</th>
+        <th>Kellogg player 2</th>
         <th>Actions</th>
       </tr>
 
@@ -175,8 +162,56 @@
             </a>
           <% end %>
         </td>
-        <td><%= match.date %></td>
-        <td><%= match.time %></td>
+        <td><%= match.tee_time %></td>
+        <td>
+          <% if match.winning_team.present? %>
+            <a href="/teams/<%= match.winning_team.id %>">
+              <%= match.winning_team.name %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if match.home_team.present? %>
+            <a href="/teams/<%= match.home_team.id %>">
+              <%= match.home_team.name %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if match.away_team.present? %>
+            <a href="/teams/<%= match.away_team.id %>">
+              <%= match.away_team.name %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if match.booth_player_1.present? %>
+            <a href="/users/<%= match.booth_player_1.id %>">
+              <%= match.booth_player_1.team_id %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if match.booth_player_2.present? %>
+            <a href="/users/<%= match.booth_player_2.id %>">
+              <%= match.booth_player_2.team_id %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if match.kellogg_player_1.present? %>
+            <a href="/users/<%= match.kellogg_player_1.id %>">
+              <%= match.kellogg_player_1.team_id %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if match.kellogg_player_2.present? %>
+            <a href="/users/<%= match.kellogg_player_2.id %>">
+              <%= match.kellogg_player_2.team_id %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/matches/<%= match.id %>" class="btn btn-primary">Show</a>
           <a href="/matches/<%= match.id %>/edit" class="btn btn-warning">Edit</a>

@@ -36,19 +36,19 @@
         Players
       </li>
 
-      <% @team.players.each do |player| %>
+      <% @team.players.each do |user| %>
         <li class="list-group-item">
-          <a href="/players/<%= player.id %>">
-            <%= player.team_id %>
+          <a href="/users/<%= user.id %>">
+            <%= user.team_id %>
           </a>
           <div class="btn-group btn-group-xs pull-right">
-            <a href="/players/<%= player.id %>" class="btn btn-primary">
+            <a href="/users/<%= user.id %>" class="btn btn-primary">
               <i class="fa fa-search-plus"></i>
             </a>
-            <a href="/players/<%= player.id %>/edit" class="btn btn-warning">
+            <a href="/users/<%= user.id %>/edit" class="btn btn-warning">
               <i class="fa fa-edit"></i>
             </a>
-            <a href="/delete_player/<%= player.id %>" class="btn btn-danger" rel="nofollow">
+            <a href="/delete_user/<%= user.id %>" class="btn btn-danger" rel="nofollow">
               <i class="fa fa-trash-o"></i>
             </a>
           </div>
@@ -56,12 +56,44 @@
       <% end %>
 
       <li class="list-group-item">
-        <form action="/create_player" method="post">
+        
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- A Team has many winning_matches -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Winning Matches
+      </li>
+
+      <% @team.winning_matches.each do |match| %>
+        <li class="list-group-item">
+          <a href="/matches/<%= match.id %>">
+            <%= match.name %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/matches/<%= match.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/matches/<%= match.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_match/<%= match.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_match" method="post">
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-
-      <!-- Label and input for team_id -->
-      <input type="hidden" name="team_id" value="<%= @team.id %>">
 
       <!-- Label and input for name -->
       <div class="form-group">
@@ -72,44 +104,89 @@
         <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="">
       </div>
 
-      <!-- Label and input for handicap_index -->
+      <!-- Label and input for course_id -->
       <div class="form-group">
-        <label for="handicap_index" class="control-label">
-          Handicap index
+        <label for="course_id" class="control-label">
+          Course
         </label>
 
-        <input type="text" id="handicap_index" name="handicap_index" placeholder="Handicap index" class="form-control" value="">
+        <%= select_tag(:course_id, options_from_collection_for_select(Course.all, :id, :image_url), :class => "form-control") %>
       </div>
 
-      <!-- Label and input for email -->
+      <!-- Label and input for tee_time -->
       <div class="form-group">
-        <label for="email" class="control-label">
-          Email
+        <label for="tee_time" class="control-label">
+          Tee time
         </label>
 
-        <input type="text" id="email" name="email" placeholder="Email" class="form-control" value="">
+        <input type="text" id="tee_time" name="tee_time" placeholder="Tee time" class="form-control" value="">
       </div>
 
-      <!-- Label and input for phone_number -->
+      <!-- Label and input for winning_team_id -->
       <div class="form-group">
-        <label for="phone_number" class="control-label">
-          Phone number
+        <label for="winning_team_id" class="control-label">
+          Winning team
         </label>
 
-        <input type="text" id="phone_number" name="phone_number" placeholder="Phone number" class="form-control" value="">
+        <%= select_tag(:winning_team_id, options_from_collection_for_select(Team.all, :id, :name), :class => "form-control") %>
       </div>
 
-      <!-- Label and input for photo_url -->
+      <!-- Label and input for home_team_id -->
       <div class="form-group">
-        <label for="photo_url" class="control-label">
-          Photo url
+        <label for="home_team_id" class="control-label">
+          Home team
         </label>
 
-        <input type="text" id="photo_url" name="photo_url" placeholder="Photo url" class="form-control" value="">
+        <%= select_tag(:home_team_id, options_from_collection_for_select(Team.all, :id, :name), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for away_team_id -->
+      <div class="form-group">
+        <label for="away_team_id" class="control-label">
+          Away team
+        </label>
+
+        <%= select_tag(:away_team_id, options_from_collection_for_select(Team.all, :id, :name), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for booth_player_1_id -->
+      <div class="form-group">
+        <label for="booth_player_1_id" class="control-label">
+          Booth player 1
+        </label>
+
+        <%= select_tag(:booth_player_1_id, options_from_collection_for_select(User.all, :id, :team_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for booth_player_2_id -->
+      <div class="form-group">
+        <label for="booth_player_2_id" class="control-label">
+          Booth player 2
+        </label>
+
+        <%= select_tag(:booth_player_2_id, options_from_collection_for_select(User.all, :id, :team_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for kellogg_player_1_id -->
+      <div class="form-group">
+        <label for="kellogg_player_1_id" class="control-label">
+          Kellogg player 1
+        </label>
+
+        <%= select_tag(:kellogg_player_1_id, options_from_collection_for_select(User.all, :id, :team_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for kellogg_player_2_id -->
+      <div class="form-group">
+        <label for="kellogg_player_2_id" class="control-label">
+          Kellogg player 2
+        </label>
+
+        <%= select_tag(:kellogg_player_2_id, options_from_collection_for_select(User.all, :id, :team_id), :class => "form-control") %>
       </div>
 
       <button class="btn btn-block btn-success">
-        Create Player
+        Create Match
       </button>
     </form>
       </li>
@@ -117,88 +194,47 @@
   </div>
 </div>
 
-<!-- A Team has many tee_times -->
+<!-- A Team has many home_team_matches -->
 
 <div class="row">
   <div class="col-md-12">
     <ul class="list-group">
       <li class="list-group-item list-group-item-info">
-        Tee Times
+        Home Team Matches
       </li>
 
-      <% @team.tee_times.each do |tee_time| %>
+      <% @team.home_team_matches.each do |match| %>
         <li class="list-group-item">
-          <a href="/tee_times/<%= tee_time.id %>">
-            <%= tee_time.time %>
+          <a href="/matches/<%= match.id %>">
+            <%= match.name %>
           </a>
           <div class="btn-group btn-group-xs pull-right">
-            <a href="/tee_times/<%= tee_time.id %>" class="btn btn-primary">
+            <a href="/matches/<%= match.id %>" class="btn btn-primary">
               <i class="fa fa-search-plus"></i>
             </a>
-            <a href="/tee_times/<%= tee_time.id %>/edit" class="btn btn-warning">
+            <a href="/matches/<%= match.id %>/edit" class="btn btn-warning">
               <i class="fa fa-edit"></i>
             </a>
-            <a href="/delete_tee_time/<%= tee_time.id %>" class="btn btn-danger" rel="nofollow">
+            <a href="/delete_match/<%= match.id %>" class="btn btn-danger" rel="nofollow">
               <i class="fa fa-trash-o"></i>
             </a>
           </div>
         </li>
       <% end %>
-
-      <li class="list-group-item">
-        <form action="/create_tee_time" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-
-      <!-- Label and input for time -->
-      <div class="form-group">
-        <label for="time" class="control-label">
-          Time
-        </label>
-
-        <input type="text" id="time" name="time" placeholder="Time" class="form-control" value="">
-      </div>
-
-      <!-- Label and input for player_id -->
-      <div class="form-group">
-        <label for="player_id" class="control-label">
-          Player
-        </label>
-
-        <%= select_tag(:player_id, options_from_collection_for_select(Player.all, :id, :team_id), :class => "form-control") %>
-      </div>
-
-      <!-- Label and input for match_id -->
-      <div class="form-group">
-        <label for="match_id" class="control-label">
-          Match
-        </label>
-
-        <%= select_tag(:match_id, options_from_collection_for_select(Match.all, :id, :name), :class => "form-control") %>
-      </div>
-
-      <!-- Label and input for team_id -->
-      <input type="hidden" name="team_id" value="<%= @team.id %>">
-
-      <button class="btn btn-block btn-success">
-        Create Tee Time
-      </button>
-    </form>
-      </li>
     </ul>
   </div>
 </div>
 
-<!-- A Team has many matches -->
+<!-- A Team has many away_team_matches -->
 
 <div class="row">
   <div class="col-md-12">
     <ul class="list-group">
       <li class="list-group-item list-group-item-info">
-        Matches
+        Away Team Matches
       </li>
 
-      <% @team.matches.each do |match| %>
+      <% @team.away_team_matches.each do |match| %>
         <li class="list-group-item">
           <a href="/matches/<%= match.id %>">
             <%= match.name %>
